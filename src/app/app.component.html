@@ -1,0 +1,81 @@
+<div class="container">
+  <h1>🚀 Naukri Job Automation</h1>
+
+  <div class="config-section" *ngIf="config">
+    <h2>📋 Configuration</h2>
+    <p><strong>Skills:</strong> {{ config.jobSearch.skills.join(', ') }}</p>
+    <p><strong>Exclude Companies:</strong> {{ config.jobSearch.excludeCompanies.join(', ') || 'None' }}</p>
+    <p><strong>Location:</strong> {{ config.jobSearch.location }}</p>
+  </div>
+
+  <div class="control-section">
+    <button (click)="startAutomation()" [disabled]="isRunning || !config" class="btn-primary">
+      {{ isRunning ? '⏳ Running...' : '▶️ Start Automation' }}
+    </button>
+    <button (click)="exportLogs()" [disabled]="applicationLogs.length === 0" class="btn-secondary">
+      📥 Export Logs
+    </button>
+  </div>
+
+  <div class="status-section" [ngClass]="{
+    'error': status.includes('❌'),
+    'success': status.includes('🎉'),
+    'info': status.includes('🔐') || status.includes('🔍') || status.includes('📊')
+  }">
+    <p class="status">{{ status }}</p>
+  </div>
+
+  <div class="stats-section" *ngIf="applicationLogs.length > 0">
+    <h3>📊 Statistics</h3>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-label">Applied</span>
+        <span class="stat-value applied">{{ appliedCount }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Skipped</span>
+        <span class="stat-value skipped">{{ skippedCount }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Total</span>
+        <span class="stat-value">{{ applicationLogs.length }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="logs-section" *ngIf="applicationLogs.length > 0">
+    <h3>📝 Application Logs ({{ applicationLogs.length }})</h3>
+    <div class="logs-table-wrapper">
+      <table class="logs-table">
+        <thead>
+          <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Skills</th>
+            <th>Posted Date</th>
+            <th>Status</th>
+            <th>Applied Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let log of applicationLogs; let last = last;" 
+              [ngClass]="'status-' + log.status"
+              [class.highlight]="last">
+            <td class="job-title">{{ log.jobTitle }}</td>
+            <td class="company">{{ log.company }}</td>
+            <td class="skills">{{ log.skills.join(', ') }}</td>
+            <td class="posted-date">{{ log.postedDate | date: 'MMM dd' }}</td>
+            <td class="status-badge">
+              <span class="badge" [ngClass]="'badge-' + log.status">
+                {{ log.status === 'applied' ? '✅' : log.status === 'skipped' ? '⏭️' : '❌' }}
+                {{ log.status }}
+              </span>
+              <span *ngIf="log.reason" class="reason-text">{{ log.reason }}</span>
+            </td>
+            <td class="applied-date">{{ log.appliedDate | date: 'short' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

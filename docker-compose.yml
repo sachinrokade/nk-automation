@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  nk-automation:
+    build: .
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./src:/app/src
+      - ./logs:/app/logs
+      - ./resumes:/app/resumes
+      - ./src/assets/config:/app/src/assets/config
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true

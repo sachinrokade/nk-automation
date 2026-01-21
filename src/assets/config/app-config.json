@@ -1,0 +1,36 @@
+{
+  "naukri": {
+    "username": "sachin19rokade@gmail.com",
+    "password": "SA1919chin@"
+  },
+  "jobSearch": {
+    "skills": ["Java", "Spring Boot", "Microservices"],
+    "excludeCompanies": ["Accenture"],
+    "includeCompanies": [],
+    "location": "India",
+    "experience": "0-6",
+    "currentCTC": "18",
+    "expectedCTC": "24",
+    "experienceJavaSpringBootMicroservices": "6",
+    "experienceVueAWSKafkaDocker": "1"
+  },
+  "resumeConfig": {
+    "resumeFolderPath": "./resumes",
+    "defaultResumeName": "resume.pdf",
+    "autoFillForms": true
+  },
+  "formFieldMappings": {
+    "experience": ["experience", "years_of_experience", "total_experience", "exp"],
+    "currentCTC": ["current_ctc", "currentctc", "current_salary", "ctc"],
+    "expectedCTC": ["expected_ctc", "expectedctc", "expected_salary", "salary_expectation"],
+    "location": ["location", "preferred_location", "city"],
+    "noticePeriod": ["notice_period", "notice", "available"],
+    "skills": ["skills", "technical_skills", "expertise"]
+  },
+  "automation": {
+    "headless": false,
+    "timeout": 30000,
+    "logFilePath": "./logs/applications.log",
+    "formSubmitWaitTime": 3000
+  }
+}

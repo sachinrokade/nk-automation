@@ -1,0 +1,38 @@
+{
+  "name": "nk-automation",
+  "version": "1.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --open",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "setup": "bash setup.sh",
+    "docker:build": "docker-compose build",
+    "docker:run": "docker-compose up",
+    "docker:stop": "docker-compose down"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^17.0.0",
+    "@angular/common": "^17.0.0",
+    "@angular/compiler": "^17.0.0",
+    "@angular/core": "^17.0.0",
+    "@angular/forms": "^17.0.0",
+    "@angular/platform-browser": "^17.0.0",
+    "@angular/platform-browser-dynamic": "^17.0.0",
+    "rxjs": "^7.8.0",
+    "tslib": "^2.6.0",
+    "zone.js": "^0.14.0"
+  },
+  "optionalDependencies": {
+    "pdf-parse": "^1.1.1",
+    "puppeteer": "^21.0.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^17.0.0",
+    "@angular/cli": "^17.0.0",
+    "@angular/compiler-cli": "^17.0.0",
+    "@types/node": "^25.0.9",
+    "typescript": "~5.2.0"
+  }
+}
